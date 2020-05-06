@@ -30,15 +30,17 @@
       bottom: 5px;
       z-index: 1;
       box-shadow: rgba(156, 172, 172, 0.2) 0px 2px 2px, rgba(156, 172, 172, 0.2) 0px 4px 4px, rgba(156, 172, 172, 0.2) 0px 8px 8px, rgba(156, 172, 172, 0.2) 0px 16px 16px, rgba(156, 172, 172, 0.2) 0px 32px 32px, rgba(156, 172, 172, 0.2) 0px 64px 64px;
+      display: none; /* For audio-only calls */
     }
     
-    #callinfo {
+    #callInfo {
     	background-color: rgba(0, 0, 0, 0.2);
     	z-index: 1;
     	position: fixed;
     	left: 0;
     	top: 0;
     	width: 100%;
+    	display: none; /* For user JS */
     }
     #footer {
     	z-index: 2;
@@ -48,18 +50,18 @@
     	width: 100%;
     }
     
-    #title {
+    #contactTitle {
     	font-size: 16pt;
     }
-    #timer {
+    #callTimer {
     	font-size: 8pt;
     }
   </style>
 </head>
 <body>
-<center id="callinfo">
-	<p id="title">Специалист</p>
-	<sup id="timer">Ожидание ответа...</sup>
+<center id="callInfo">
+	<p id="contactTitle">Contact</p>
+	<sup id="callTimer">Waiting connection...</sup>
 </center>
 
 <video id="localVideo" autoplay muted></video>

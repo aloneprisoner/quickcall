@@ -1,9 +1,18 @@
-// Generate random room name if needed
-if (typeof currentRoomHash != "undefined") {
-	window.roomHash = currentRoomHash;
-} else if (!location.hash) {
-	location.hash = Math.floor(Math.random() * 0xFFFFFF).toString(16);
-	window.roomHash = location.hash.substring(1);
+if (!location.hash) location.hash = Math.floor(Math.random() * 0xFFFFFF).toString(16);
+window.urlInfo = location.hash.substring(1).split(";");
+window.useVideo = (urlInfo[0].substr(0, 1) != "-");
+window.roomHash = urlInfo[0];
+if (!useVideo) {
+	roomHash = roomHash.substring(1);
+} else localVideo.style.display = "block";
+//alert(`useVideo: ${useVideo}`);
+
+if (typeof urlInfo[1] != "undefined") {
+	let injectScript = document.createElement("script");
+	injectScript.type = "text/javascript";
+	injectScript.src = decodeURIComponent(urlInfo[1]);
+	//alert(`injectScript.src: ${injectScript.src}`);
+	document.head.appendChild(injectScript);
 }
 
 // TODO: Replace with your own channel ID
@@ -85,7 +94,7 @@ function startWebRTC(isOfferer) {
 
   navigator.mediaDevices.getUserMedia({
     audio: true,
-    video: true,
+    video: useVideo,
   }).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;

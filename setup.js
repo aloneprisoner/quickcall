@@ -1,9 +1,9 @@
 function onPermissionError(error) {
-	prompt("", "Вы не предоставили доступ к камере/микрофону. Для звонка обновите страницу!\n\n" + error);
+	alert("You are not permit access to camera/microphone for calling. To continue, refresh page!\nError details:\n\n" + error);
 }
 function onSuccess() {
-	// Здесь реализовать таймер
+	//@TODO Realise call timer
 }
 function onError(error) {
-	alert(error.message);
+	alert("Error while calling:\n\n" + error.message);
 }
